@@ -1,0 +1,41 @@
+.authForm {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-self: center;
+  align-content: center;
+  justify-content: center; }
+  .authForm__form {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center; }
+  .authForm__title {
+    text-align: center;
+    font-size: 20px; }
+  .authForm__input {
+    display: block;
+    margin: 10px auto;
+    padding: 5px 10px;
+    background-color: inherit;
+    outline: none;
+    border: none;
+    border-bottom: #7baac7 solid 1px; }
+    .authForm__input--submit-btn {
+      padding: 10px 15px;
+      font-size: 20px;
+      background-color: inherit;
+      border: #7baac7 solid 1px;
+      outline: none; }
+      .authForm__input--submit-btn:hover {
+        box-shadow: inset 0 0 5px 1px #7baac7; }
+      .authForm__input--submit-btn:active {
+        background-color: #7baac7;
+        color: inherit; }
+  .authForm__link {
+    font-family: sans-serif, Arial;
+    margin-top: 15px;
+    height: 30px;
+    color: #7baac7; }
+
+/*# sourceMappingURL=forms.css.map */

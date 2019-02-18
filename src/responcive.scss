@@ -1,0 +1,35 @@
+@import './App.scss';
+@import './components/Header/header';
+@import './components/TaskList/tasklist';
+@import './components/NewTask/newTask';
+
+@media screen and (min-width: 320px){
+  .newTask{
+    height: 350px;
+  }
+  .header{
+    //display: block;
+    height: 100px;
+  }
+  .taskList{
+    height: 500px;
+  }
+}
+
+@media screen and (min-width: 678px){
+  .App{
+    display: grid;
+    grid-template-rows: 15% 85%;
+    grid-template-columns: 30% 70%;
+  }
+  .newTask{
+    height: 100%;
+  }
+  .header{
+    height: 100%;
+  }
+  .taskList{
+    height: 100%;
+  }
+}
+
