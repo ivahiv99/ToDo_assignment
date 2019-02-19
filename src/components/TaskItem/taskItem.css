@@ -1,0 +1,9 @@
+.TaskItem {
+  width: 95%;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: beige; }
+
+/*# sourceMappingURL=taskItem.css.map */

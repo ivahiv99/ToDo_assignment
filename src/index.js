@@ -9,7 +9,7 @@ import firebase from "./firebase";
 //
 // import {Provider} from 'react-redux';
 // import {createStore} from 'redux';
-// import allReducers from './reduxStaff/rootReduser';
+// import allReducers from './reduxStuff/rootReduser';
 // const store = createStore(allReducers);
 
 firebase.auth().onAuthStateChanged(function(user) {

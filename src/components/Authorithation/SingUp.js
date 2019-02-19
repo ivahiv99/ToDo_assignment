@@ -30,7 +30,12 @@ class SignUpForm extends Component{
         firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
             .then(()=>{
                 console.log('signup successful');  // should pass data to store
-                this.setState(this.state);
+                // this.setState(this.state);
+                firebase.firestore().collection('users').add({
+                    email:this.state.email,
+                    password:this.state.password,
+                    username: this.state.username
+                });
             })
             .catch((error)=>{
                 alert(`${error.message}  ${error.code}`);
@@ -44,10 +49,10 @@ class SignUpForm extends Component{
                 <form className='authForm__form' onSubmit={this.handleSubmit}>
                     <h5 className='authForm__title'>Sign Up</h5>
                     <input type='text'
-                           id='nickname'
+                           id='username'
                            placeholder='Nickname'
                            className='authForm__input'
-                           value={this.state.nickname}
+                           value={this.state.username}
                            onChange={this.handleInputChange}/>
                     <input type='email'
                            id='email'

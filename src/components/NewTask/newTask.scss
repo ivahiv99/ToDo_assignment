@@ -4,17 +4,36 @@
   grid-row: 2/3;
   grid-column: 2/3;
   background-color: tomato;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+
+  &__title{
+  //add some font
+  }
+
+  &__input {
+    width: 65%;
+    min-width: 300px;
+    height: 30px;
+    margin: 25px 0 20px 0;
+    //border: none;
+  }
+
+  &__btn{
+    padding: 10px 15px;
+    font-size: 20px;
+    background-color: inherit;
+    border: #7baac7 solid 1px;
+    outline: none;
+    color: #7baac7;
+
+    &:active{
+      background-color: #7baac7;
+      color: inherit;
+    }
+  }
 }
 
-
-//@media screen and (min-width: 320px){
-//  .newTask{
-//    height: 350px;
-//  }
-//}
-//
-//@media screen and (min-width: 678px){
-//  .newTask{
-//    height: 100%;
-//  }
-//}
