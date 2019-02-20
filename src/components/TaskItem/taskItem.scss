@@ -12,6 +12,9 @@
 
   &__task{
     font-size: 20px;
+    padding-left: 5px;
+    line-height: 20px;
+    text-align: center;
     &--done{
       font-size: 20px;
       text-decoration: line-through;
@@ -25,9 +28,14 @@
     border: none;
     cursor: pointer;
     transition: 5ms;
+    outline: none;
+
     &:hover{
       font-size: 20px;
       padding-right: 5px;
+    }
+    &:active{
+      font-size: 25px;
     }
   }
 

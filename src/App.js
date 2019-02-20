@@ -13,13 +13,28 @@ class App extends Component {
     constructor(props) {
         super(props);
         this.giveUsername = this.giveUsername.bind(this);
+        this.rerenderList = this.rerenderList.bind(this);
+        this.listRerendered = this.listRerendered.bind(this);
         this.state = {
             userId :   null,
             username : null,
-            loaded:    false
+            loaded:    false,
+            rerenderTest: false,
+            // firstCheckHack: true
         };
     }
-
+    rerenderList(){
+        this.setState({
+            rerenderTest: true,
+            // firstCheckHack: false
+        })
+    }
+    listRerendered(){
+        this.setState({
+            rerenderTest: false,
+            // firstCheckHack: true
+        })
+    }
     componentWillMount() {
         const userId = firebase.auth().currentUser.email;
         this.giveUsername(userId);
@@ -45,8 +60,12 @@ class App extends Component {
           ? <span>Loading ... </span>
           : <div className='App'>
                 <Header   username={this.state.username}/>
-                <NewTask  userId={this.state.userId}  />
-                <TaskList userId={this.state.userId}  />
+                <NewTask  userId={this.state.userId} updateList={this.rerenderList} />
+                <TaskList userId={this.state.userId}
+                          shouldListUpdate={this.state.rerenderTest}
+                          listResponse={this.listRerendered}
+                          // firstCheckHack={this.state.firstCheckHack}
+                />
             </div>
         );
     }

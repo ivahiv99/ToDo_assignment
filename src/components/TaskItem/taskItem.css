@@ -10,7 +10,10 @@
   background-color: beige;
   border-radius: 5px; }
   .taskItem__task {
-    font-size: 20px; }
+    font-size: 20px;
+    padding-left: 5px;
+    line-height: 20px;
+    text-align: center; }
     .taskItem__task--done {
       font-size: 20px;
       text-decoration: line-through;
@@ -21,9 +24,12 @@
     background-color: inherit;
     border: none;
     cursor: pointer;
-    transition: 5ms; }
+    transition: 5ms;
+    outline: none; }
     .taskItem__btn:hover {
       font-size: 20px;
       padding-right: 5px; }
+    .taskItem__btn:active {
+      font-size: 25px; }
 
 /*# sourceMappingURL=taskItem.css.map */
