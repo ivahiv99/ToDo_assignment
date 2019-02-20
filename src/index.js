@@ -3,31 +3,16 @@ import ReactDOM from 'react-dom';
 import {BrowserRouter} from 'react-router-dom';
 import Router from './Router';
 import * as serviceWorker from './serviceWorker';
-import firebase from "./firebase";
-
-
-//
-// import {Provider} from 'react-redux';
-// import {createStore} from 'redux';
-// import allReducers from './reduxStuff/rootReduser';
-// const store = createStore(allReducers);
+import firebase from './firebase';
 
 firebase.auth().onAuthStateChanged(function(user) {
     const authorized = user ? true :false;
-
-    console.log(`in index  ${authorized}`);
-
-
-ReactDOM.render(
-    <BrowserRouter>
-        {/*<Provider store={store} >*/}
+    ReactDOM.render(
+        <BrowserRouter>
             <Router isAuthorized={authorized}/>
-        {/*</Provider>*/}
-    </BrowserRouter>
-    , document.getElementById('root'));
-
+        </BrowserRouter>
+        , document.getElementById('root'));
 });
-
 
 
 // If you want your app to work offline and load faster, you can change

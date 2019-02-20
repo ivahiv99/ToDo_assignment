@@ -3,23 +3,27 @@
   height: 100%;
   grid-row: 1/2;
   grid-column: 2/3;
-  background-color: #7baac7;
-
   display: flex;
   flex-direction: row;
+  align-items: center;
   justify-content: space-around;
+  box-shadow: 1px 1px 17px 0.5px #444;
+  background-color: rgba(  0,0,0 ,0.2);
+  z-index: 99;
 
   &__title{
-
+    font-size: 30px;
+    color: #fff;
+    font-family: Arial;
   }
   &__logOut{
-    //width: 100px;
-    //height: 50px;
+    width: 100px;
+    height: 50px;
     padding: 8px 13px;
     font-size: 18px;
-    background-color: inherit;
-    border: darkblue solid 1px;
-    color: darkblue;
+    background-color: transparent;
+    border: #4CD6CE solid 1px;
+    color: #4CD6CE;
     outline: none;
   }
 }

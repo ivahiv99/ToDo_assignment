@@ -1,9 +1,7 @@
 import React, {Component} from 'react';
 import TaskItem from '../TaskItem/TaskItem';
-import firebase from "../../firebase";
-
+import firebase from '../../firebase';
 import './tasklist.scss';
-
 
 class TaskList extends Component{
     constructor(props){
@@ -11,36 +9,43 @@ class TaskList extends Component{
         this.state={
             tasks: [] ,
             userId: this.props.userId,
-            loaded: false
+            loaded: false,
+            updateList: false
         };
         this.getTasks = this.getTasks.bind(this);
+        this.listUpdate = this.listUpdate.bind(this);
+    }
+     listUpdate(){
+         this.getTasks(this.props.userId);
+         this.setState({
+             updateList: !this.state.updateList
+         });
+     }
+    componentWillMount(){
+        this.getTasks(this.props.userId);//need to call this again when trigering rerender
     }
     async getTasks(userId) {
         let tasks =[];
-        await firebase.firestore().collection('user_tasks').where('creator', '==', userId).get().then((snapshot) => {
+        firebase.firestore().collection('user_tasks').where('creator', '==', userId).get().then((snapshot) => {
             snapshot.docs.forEach(doc => {
-                console.log(`doc.data().task - ${doc.data().task}`);
-                tasks.push({task: doc.data().task , status: doc.data().status })
+                tasks.push({task: doc.data().task , status: doc.data().status , docId: doc.id })
             });
+            this.setState({loaded: true, tasks: tasks});
         });
-        this.setState({loaded: true, tasks: tasks});
-        console.log(tasks);
     }
     render() {
         return !this.state.loaded
             ? <span>Loading ... </span>
             : <div className='taskList'>
-                <ul>
-                    {this.state.tasks.map(()=>{
-                        console.log('returning TaskItem');
-                        return <TaskItem task={this.state.tasks.task} status={this.state.tasks.status}/>
-                    })}
-                </ul>
+                {this.state.tasks.map((taskItem)=>{
+                    return <TaskItem
+                        task={taskItem.task}
+                        status={taskItem.status}
+                        docId={taskItem.docId}
+                        updateList={this.listUpdate}
+                    />
+                })}
               </div>
-        ;
-    }
-    componentDidMount() {
-        this.getTasks(this.props.userId);
     }
 }
 

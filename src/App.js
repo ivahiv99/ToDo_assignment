@@ -14,30 +14,13 @@ class App extends Component {
         super(props);
         this.giveUsername = this.giveUsername.bind(this);
         this.state = {
-            userId : null,
+            userId :   null,
             username : null,
-            loaded: false
+            loaded:    false
         };
     }
 
     componentWillMount() {
-
-    }
-
-    render() {
-        console.log(`this.state.username --> ${this.state.username }`);
-        return (
-          !this.state.loaded
-          ? <span>Loading ... </span>
-          : <div className='App'>
-                <Header username={this.state.username}/>
-                <NewTask userId={this.state.userId}/>
-                <TaskList userId={this.state.userId}/>
-            </div>
-        );
-    }
-
-    componentDidMount() {
         const userId = firebase.auth().currentUser.email;
         this.giveUsername(userId);
     }
@@ -46,7 +29,6 @@ class App extends Component {
         let username ;
         await firebase.firestore().collection('users').where('email', '==', userId).get().then((snapshot) =>{
             snapshot.docs.forEach(doc =>{
-                console.log(`doc.data().username - ${doc.data().username}`);
                 username = doc.data().username;
             });
         }).catch((error)=>alert(error));
@@ -56,7 +38,18 @@ class App extends Component {
             loaded: true
         });
     }
-}
 
+    render() {
+        return (
+          !this.state.loaded
+          ? <span>Loading ... </span>
+          : <div className='App'>
+                <Header   username={this.state.username}/>
+                <NewTask  userId={this.state.userId}  />
+                <TaskList userId={this.state.userId}  />
+            </div>
+        );
+    }
+}
 
 export default App;

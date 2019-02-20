@@ -1,33 +1,34 @@
 import React, {Component} from 'react';
-
 import firebase from '../../firebase';
-
 import './newTask.scss';
-
 
 class NewTask extends Component{
     constructor(props){
         super(props);
         this.handleSave = this.handleSave.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
-        console.log(`this.props.userId from NewTask -> ${this.props.userId}`);
         this.state={
-            gg:'not gg',
             value: ''
         };
     }
 
     async handleSave(){
-        console.log('handleSave method');
+        // let test = this.refs.newTaskInput.value.split('')
+        //     .map(this.refs.newTaskInput.value.replace(/\s/g,''))
+        //     .join('');
+        //
+        // if(test === '' ){
+        //     this.refs.newTaskInput.value = 'Hey! Type something ';
+        //     return null
+        // }
+        /*clean this^*/
         const value = this.refs.newTaskInput.value;
         await firebase.firestore().collection('user_tasks').add({
             creator:this.props.userId,
             status:'undone',
             task: value
         });
-        console.log('data added');
         this.setState({  //for some reason cant set state on the first time method called
-            gg:'gg',
             value: this.refs.newTaskInput.value
         });
         this.refs.newTaskInput.value = '';

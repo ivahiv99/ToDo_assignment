@@ -12,12 +12,10 @@ class SignUpForm extends Component{
             username: '',
             email:'' ,
             password:''
-        }
+        };
         this.handleInputChange = this.handleInputChange.bind(this);
-        // this.userDataToStore = this.userDataToStore.bind(this);  //have no store yet
         this.handleSubmit = this.handleSubmit.bind(this);
     }
-
 
     handleInputChange(e){
         this.setState({
@@ -29,8 +27,6 @@ class SignUpForm extends Component{
         e.preventDefault();
         firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
             .then(()=>{
-                console.log('signup successful');  // should pass data to store
-                // this.setState(this.state);
                 firebase.firestore().collection('users').add({
                     email:this.state.email,
                     password:this.state.password,
@@ -40,7 +36,6 @@ class SignUpForm extends Component{
             .catch((error)=>{
                 alert(`${error.message}  ${error.code}`);
             });
-
     }
 
     render() {
@@ -66,7 +61,7 @@ class SignUpForm extends Component{
                            className='authForm__input'
                            value={this.state.password}
                            onChange={this.handleInputChange}/>
-                    <input type="submit" className='authForm__input--submit-btn' value='Sign up'/>
+                    <input type='submit' className='authForm__input--submit-btn' value='Sign up'/>
                     <Link className='authForm__link' to='/logIn'>Already have an account?</Link>
                 </form>
             </div>

@@ -1,21 +1,15 @@
 import React, {Component} from 'react';
-
 import firebase from '../../firebase';
-
 import './header.scss';
-
 
 class Header extends Component{
     constructor(props){
         super(props);
-        console.log(`props from Header ${this.props.username}`);
         this.logOutHandle = this.logOutHandle.bind(this);
     }
 
     logOutHandle(){
-        firebase.auth().signOut().then(()=> {
-            console.log('logout successful');
-        }).catch(function(error) {
+        firebase.auth().signOut().catch(function(error) {
             alert(`${error.code}   ${error.message}`);
         });
     }
