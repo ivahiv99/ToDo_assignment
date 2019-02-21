@@ -18,7 +18,9 @@ class NewTask extends Component{
             creator:this.props.userId,
             status:'undone',
             task: value
-        }).then(this.props.updateList);
+        }).then(()=> {
+            this.props.updateList();
+        });
         this.refs.newTaskInput.value = '';
     }
 

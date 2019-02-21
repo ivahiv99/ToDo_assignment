@@ -8,7 +8,6 @@ import firebase from './firebase';
 import './App.scss';
 import './responcive.scss';
 
-
 class App extends Component {
     constructor(props) {
         super(props);
@@ -19,27 +18,23 @@ class App extends Component {
             userId :   null,
             username : null,
             loaded:    false,
-            rerenderTest: false,
-            // firstCheckHack: true
+            rerenderTest: false
         };
     }
     rerenderList(){
         this.setState({
             rerenderTest: true,
-            // firstCheckHack: false
         })
     }
     listRerendered(){
         this.setState({
             rerenderTest: false,
-            // firstCheckHack: true
         })
     }
     componentWillMount() {
         const userId = firebase.auth().currentUser.email;
         this.giveUsername(userId);
     }
-
     async giveUsername(userId){
         let username ;
         await firebase.firestore().collection('users').where('email', '==', userId).get().then((snapshot) =>{
@@ -64,7 +59,6 @@ class App extends Component {
                 <TaskList userId={this.state.userId}
                           shouldListUpdate={this.state.rerenderTest}
                           listResponse={this.listRerendered}
-                          // firstCheckHack={this.state.firstCheckHack}
                 />
             </div>
         );

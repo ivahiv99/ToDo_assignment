@@ -7,29 +7,12 @@ class TaskItem extends Component{
         super(props);
         this.handleCheckbox = this.handleCheckbox.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
-        // this.firstCheckHack = this.firstCheckHack.bind(this);
         this.state={
             status: this.props.status,
-            // firstCheckHack: this.props.firstCheckHack
         }
     }
-    // firstCheckHack(){
-    //     firebase.firestore().collection('user_tasks')
-    //         .doc(this.props.docId).update({
-    //         status: this.state.status
-    //     })
-    //     .then(()=>{
-    //         this.setState({
-    //             status: this.state.status === 'done' ? 'undone' : 'done',
-    //             firstCheckHack: false
-    //         });
-    //     });
-    // }
+
     handleCheckbox(){
-        // if(this.state.firstCheckHack){
-        //     this.firstCheckHack();
-        //     return null
-        // }
         const writeThis = this.state.status === 'done' ? 'undone' : 'done';
         firebase.firestore().collection('user_tasks')
             .doc(this.props.docId).update({
@@ -37,8 +20,9 @@ class TaskItem extends Component{
             })
             .then(()=>{
                 this.setState({
-                    status: this.state.status === 'done' ? 'undone' : 'done'
+                    status: this.state.status === 'done' ? 'undone' : 'done',
                 });
+                this.forceUpdate()
             });
     }
     async handleDelete(){
@@ -49,7 +33,7 @@ class TaskItem extends Component{
     render() {
         return(
           <div className='taskItem'>
-              <input  type='checkbox' onClick={this.handleCheckbox} />
+              <input  type='checkbox' onClick={this.handleCheckbox}/>
               <p className={this.state.status === 'done' ? 'taskItem__task--done':'taskItem__task'} ref='task'>{this.props.task}</p>
               <button className='taskItem__btn' onClick={this.handleDelete}>
                   <i className='fa fa-trash' ></i>

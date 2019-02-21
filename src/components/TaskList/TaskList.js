@@ -36,9 +36,9 @@ class TaskList extends Component{
                     return <TaskItem
                         task = {taskItem.task}
                         status = {taskItem.status}
+                        key = {taskItem.docId}
                         docId = {taskItem.docId}
                         updateList = {this.listUpdate}
-                        // firstCheckHack = {this.props.firstCheckHack}
                     />
                 })}
               </div>
