@@ -9,6 +9,7 @@ class TaskItem extends Component{
         this.handleDelete = this.handleDelete.bind(this);
         this.state={
             status: this.props.status,
+            isChecked: this.props.status === 'done'
         }
     }
 
@@ -21,8 +22,8 @@ class TaskItem extends Component{
             .then(()=>{
                 this.setState({
                     status: this.state.status === 'done' ? 'undone' : 'done',
+                    isChecked: !this.state.isChecked
                 });
-                this.forceUpdate()
             });
     }
     async handleDelete(){
@@ -30,11 +31,14 @@ class TaskItem extends Component{
             .doc(this.props.docId).delete()
             .then(this.props.updateList);
     }
+
     render() {
         return(
           <div className='taskItem'>
-              <input  type='checkbox' onClick={this.handleCheckbox}/>
-              <p className={this.state.status === 'done' ? 'taskItem__task--done':'taskItem__task'} ref='task'>{this.props.task}</p>
+              <div onClick={this.handleCheckbox} className={this.state.isChecked ? 'checkbox--checked': 'checkbox'}/>
+              <p className={this.state.isChecked ? 'taskItem__task--done':'taskItem__task'} ref='task'>
+                  {this.props.task}
+              </p>
               <button className='taskItem__btn' onClick={this.handleDelete}>
                   <i className='fa fa-trash' ></i>
               </button>

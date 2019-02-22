@@ -12,9 +12,9 @@
 
   &__task{
     font-size: 20px;
-    padding-left: 5px;
     line-height: 20px;
     text-align: center;
+
     &--done{
       font-size: 20px;
       text-decoration: line-through;
@@ -38,5 +38,26 @@
       font-size: 25px;
     }
   }
+}
 
+.checkbox{
+  width: 23px;
+  height: 23px;
+  vertical-align: middle;
+  border: solid 1px #255972;
+  border-radius: 5px;
+  background-color: #fff;
+
+  &--checked {
+    width: 23px;
+    height: 23px;
+    vertical-align: middle;
+    border: solid 1px #ffffff;
+    border-radius: 5px;
+    background-color: #2c5f79;//#4CD6CE;
+    background-image: url('../../img/checked.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 75%;
+  }
 }
